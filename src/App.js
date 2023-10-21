@@ -8,7 +8,7 @@ function AlertMessage(props) {
 }
 
 function App() {
-  const [val, setVal] = useState(0)
+  const [val, setVal] = useState(1000)
   const [tax1, setTax1] = useState(0)
   const [tax2, setTax2] = useState(0)
   const [msg, setMsg] = useState(<p>set a price...</p>)
@@ -17,16 +17,22 @@ function App() {
     setVal(event.target.value)
   }
 
+  // ☆新たに追加したフック
   useEffect(() => {
-    setTax1(Math.floor(val * 1.08))
-    setTax2(Math.floor(val * 1.1))
-
     let res = <div>
-      <p>軽減税率(8%) ： {Math.floor(val * 1.08)} 円</p>
-      <p>通常税率(10%)： {Math.floor(val * 1.1)} 円</p>
+      <p>軽減税率(8%) ： {tax1} 円</p>
+      <p>通常税率(10%)： {tax2} 円</p>
     </div>
     setMsg(res)
-  }, [val])  // valの変更に応じてuseEffectを再実行
+  })
+
+  useEffect(() => {
+    setTax1(Math.floor(val * 1.08))
+  })
+
+  useEffect(() => {
+    setTax2(Math.floor(val * 1.1))
+  })
   
   return (
     <div>
