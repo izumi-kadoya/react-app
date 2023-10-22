@@ -17,14 +17,14 @@ function App() {
     setVal(event.target.value)
   }
 
-  // ☆新たに追加したフック
   useEffect(() => {
     let res = <div>
       <p>軽減税率(8%) ： {tax1} 円</p>
       <p>通常税率(10%)： {tax2} 円</p>
     </div>
     setMsg(res)
-  })
+  }, [tax1, tax2])
+  
 
   useEffect(() => {
     setTax1(Math.floor(val * 1.08))
