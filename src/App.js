@@ -71,6 +71,7 @@ function CardMessage(props) {
   </div>
 }
 
+
 // ベース・コンポーネント
 function App() {
   return (
